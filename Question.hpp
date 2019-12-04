@@ -1,10 +1,4 @@
-// ---------------------------------------------------------------------
-// Jeopardy Project
-// Question Class Declaration, v1.0
-//
-// CSC 111: Introduction to Programming
-// BMCC / Spring 2019 / Professor Yu
-// ---------------------------------------------------------------------
+
 #ifndef QUESTION_HPP
 #define QUESTION_HPP
 
