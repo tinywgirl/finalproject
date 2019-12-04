@@ -1,10 +1,3 @@
-// ---------------------------------------------------------------------
-// Jeopardy Project
-// Main Program, v1.0
-//
-// CSC 111: Introduction to Programming
-// BMCC / Spring 2019 / Professor Yu hu hu hu
-// ---------------------------------------------------------------------
 #include "pch.h"
 #include <iostream>
 #include <fstream>
