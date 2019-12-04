@@ -162,12 +162,7 @@ main()
 	
 	cout << "Answer: " << questions[randomQ].getAnswer() << endl;
 
-	return 0;
-}
-
-
-
-/*//ask the user to guess the question
+//ask the user to guess the question
 	cout << "Answer the question or you die!" << endl;
 	cin.getline(answerQ, 50);
 
@@ -180,9 +175,3 @@ main()
 
 	return 0;
 }
-
-/* loop copied
-	for (int i = 0; i < questions.size(); i++) {
-		cout << "--------\n" << questions[i];
-	}
-*/
