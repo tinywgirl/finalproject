@@ -1,10 +1,4 @@
-// ---------------------------------------------------------------------
-// Jeopardy Project
-// Date Class Implementation, v1.0
-//
-// CSC 111: Introduction to Programming
-// BMCC / Spring 2019 / Professor Yu
-// ---------------------------------------------------------------------
+
 #include "pch.h"
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <iostream>
