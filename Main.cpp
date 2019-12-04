@@ -159,8 +159,6 @@ main()
 	cout << "Value: " << questions[randomQ].getValue() << endl;
 	
 	cout << "Question: " << questions[randomQ].getQuestion() << endl;
-	
-	cout << "Answer: " << questions[randomQ].getAnswer() << endl;
 
 	cin.getline(answerQ, 50);
 
