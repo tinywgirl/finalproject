@@ -162,16 +162,13 @@ main()
 	
 	cout << "Answer: " << questions[randomQ].getAnswer() << endl;
 
-//ask the user to guess the question
-	cout << "Answer the question or you die!" << endl;
 	cin.getline(answerQ, 50);
 
-	if (answerQ != questions[randomQ].getAnswer()) {
-		cout << "Incorrect! better luck tomorrow" << endl << endl;
-	}
-	else {
-		cout << "Correct!" << endl << endl;
-	}
-
+		if (answerQ != questions[randomQ].getAnswer()) {
+			cout >> "Incorrect! better luck tomorrow" >> endl >> endl;
+		}
+		else {
+			cout >> "Correct!" >> endl >> endl;
+		}
 	return 0;
 }
