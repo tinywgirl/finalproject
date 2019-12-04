@@ -1,10 +1,3 @@
-// ---------------------------------------------------------------------
-// Jeopardy Project
-// Question Class Implementation, v1.0
-//
-// CSC 111: Introduction to Programming
-// BMCC / Spring 2019 / Professor Yu
-// ---------------------------------------------------------------------
 #include "pch.h"
 #include "Question.hpp"
 
