@@ -1,3 +1,4 @@
+
 #include "pch.h"
 #include <iostream>
 #include <fstream>
@@ -13,12 +14,12 @@
 
 using namespace std;
 
-const char *INPUT_FILE = "jeopardy.csv";
-const char *DELIMS = ",";
+const char* INPUT_FILE = "jeopardy.csv";
+const char* DELIMS = ",";
 
-int
-main()
-{
+void Quiz(); // function for the quiz
+
+int main() {
 	// First we will read the input file.
 	ifstream inputFile;
 	inputFile.open(INPUT_FILE);
@@ -28,7 +29,7 @@ main()
 		exit(1);
 	}
 
-	// The first line is the column headings.  We need to clear it.
+	// The first line is the column headings
 	string line;
 
 	if (!getline(inputFile, line)) {
@@ -36,9 +37,9 @@ main()
 		exit(2);
 	}
 
-	cout << "The input file is now being read, this will take a few seconds." << endl;
+	cout << "The file is being read, please wait a moment. . ." << endl;
 
-	// Now we are ready to loop through the input records.
+	// loop through the input records.
 	vector<Question> questions;
 
 	while (getline(inputFile, line)) {
@@ -50,9 +51,8 @@ main()
 
 		string::size_type i;
 
-		// In the CSV file, double quotes are escaped by having two
-		// of them.  This makes them a pain to parse, but we will
-		// use a trick.  We will replace them with the tilde
+		// In the Excel file, double quotes are escaped by having two
+		// of them.  This makes them a pain to parse, we will replace them with the tilde
 		// character (~), which does not appear in the file
 		// otherwise.
 		bool in_string = false;
@@ -70,9 +70,7 @@ main()
 				}
 			}
 
-			// Commas can also appear inside a quoted string, which
-			// is a problem.  Replace them with the backtick
-			// character, which does not appear in the file.
+			// Commas can also appear inside a quoted string, which can be a problem, we replace them with back ticks
 			if (in_string && line[i] == ',') {
 				line[i] = '`';
 			}
@@ -140,33 +138,63 @@ main()
 	// file stream.  We won't need to use it again.
 	inputFile.close();
 
-	srand(time(0));
-
-	double randomQ = (rand() % 216930) + 1.00;
-
-	string answerQ;
+	srand(time(0)); // seed random
+	double assignedQuestionIndex = (rand() % 216930) + 1.00;
+	string answerQuestion;
 
 	cout << endl << "Jeopardy Question of the day" << endl << endl;
+	cout << "Question: " << questions[assignedQuestionIndex].getQuestion() << endl;
 
-	cout << "Show Number: " << questions[randomQ].getShowNumber() << endl;
+	cout << "Show Number: " << questions[assignedQuestionIndex].getShowNumber() << endl;
+	cout << "Air Date: " << questions[assignedQuestionIndex].getAirDate() << endl;
+	cout << "Round: " << questions[assignedQuestionIndex].getRound() << endl;
+	cout << "Category: " << questions[assignedQuestionIndex].getCategory() << endl;
+	cout << "Price: " << questions[assignedQuestionIndex].getValue() << endl << endl;
 
-	cout << "Air Date: " << questions[randomQ].getAirDate() << endl;
-	
-	cout << "Round: " << questions[randomQ].getRound() << endl;
-	
-	cout << "Category: " << questions[randomQ].getCategory() << endl;
-	
-	cout << "Value: " << questions[randomQ].getValue() << endl;
-	
-	cout << "Question: " << questions[randomQ].getQuestion() << endl;
+	cout << "Pleaser provide an answer: " << endl;
+	getline(cin, answerQuestion);
 
-	cin.getline(answerQ, 50);
+	if (answerQuestion != questions[assignedQuestionIndex].getAnswer()) {
+		cout << "Incorrect! better luck tomorrow" << endl << endl;
+	}
+	else {
+		cout << "Correct!" << endl << endl;
+	}	
+	
+	//ask the user if they want to answer another question
+	int responseMore;
+	cout << "Do you want to answer one more question?"<< endl <<"Press 1 for yes, 2 for no." << endl;
+	cin >> responseMore;
 
-		if (answerQ != questions[randomQ].getAnswer()) {
-			cout >> "Incorrect! better luck tomorrow" >> endl >> endl;
+	while (responseMore == 1) {
+		double assignedQuestion = (rand() % 216930) + 1.00;
+		string answer2;
+
+		cout << endl << "New question: " << endl << endl;
+
+		cout << "Question: " << questions[assignedQuestion].getQuestion() << endl;
+		cout << "Show Number: " << questions[assignedQuestion].getShowNumber() << endl;
+		cout << "Air Date: " << questions[assignedQuestion].getAirDate() << endl;
+		cout << "Round: " << questions[assignedQuestion].getRound() << endl;
+		cout << "Category: " << questions[assignedQuestion].getCategory() << endl;
+		cout << "Price: " << questions[assignedQuestion].getValue() << endl << endl;
+
+		cout << "Please provide an answer: " << endl;
+
+		cin.ignore(); // clears the buffer
+
+		getline(cin, answer2);
+		
+		if (answer2 != questions[assignedQuestion].getAnswer()) {
+			cout << "Incorrect! better luck tomorrow" << endl << endl;
 		}
 		else {
-			cout >> "Correct!" >> endl >> endl;
+			cout << "Correct!" << endl << endl;
 		}
+
+		cout << "Do you want to answer my questions? Press 1 for yes, 2 for no." << endl;
+		cin >> responseMore;		
+	}
+	
 	return 0;
 }
