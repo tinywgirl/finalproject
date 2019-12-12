@@ -45,5 +45,3 @@ private:
 
 // stream output operator
 std::ostream& operator<<(std::ostream&, const Question&);
-
-#endif /* QUESTION_HPP */
