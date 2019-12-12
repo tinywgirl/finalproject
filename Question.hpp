@@ -1,11 +1,7 @@
-
-#ifndef QUESTION_HPP
-#define QUESTION_HPP
-
 #include <iostream>
 #include <string>
 
-#include "Date.hpp"
+#include "Date.h"
 
 // Jeopardy Question
 class Question {
