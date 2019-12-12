@@ -9,8 +9,8 @@
 #include <cstdlib>
 #include <ctime>
 
-#include "Question.hpp"
-#include "Date.hpp"
+#include "Question.h"
+#include "Date.h"
 
 using namespace std;
 
@@ -39,13 +39,13 @@ int main() {
 
 	cout << "The file is being read, please wait a moment. . ." << endl;
 
-	// loop through the input records.
+	//loop through the input records.
 	vector<Question> questions;
 
 	while (getline(inputFile, line)) {
 		// getline automatically removes the line feed (\n)
 		// character at the end of the line, but a carriage return
-		// (\r) may remain.  Remove it before continuing.
+		// (\r) may remain.
 		if (line[line.length() - 1] == '\r')
 			line = line.substr(0, line.length() - 1);
 
@@ -141,6 +141,7 @@ int main() {
 	srand(time(0)); // seed random
 	double assignedQuestionIndex = (rand() % 216930) + 1.00;
 	string answerQuestion;
+	int points = 0;
 
 	cout << endl << "Jeopardy Question of the day" << endl << endl;
 	cout << "Question: " << questions[assignedQuestionIndex].getQuestion() << endl;
@@ -155,15 +156,17 @@ int main() {
 	getline(cin, answerQuestion);
 
 	if (answerQuestion != questions[assignedQuestionIndex].getAnswer()) {
-		cout << "Incorrect! better luck tomorrow" << endl << endl;
+		cout << "Incorrect! the correct answer is:" << questions[assignedQuestionIndex].getAnswer() << endl << endl;
+
 	}
 	else {
 		cout << "Correct!" << endl << endl;
-	}	
-	
+		points += questions[assignedQuestionIndex].getValue();
+	}
+
 	//ask the user if they want to answer another question
 	int responseMore;
-	cout << "Do you want to answer one more question?"<< endl <<"Press 1 for yes, 2 for no." << endl;
+	cout << "Do you want to answer one more question?" << endl << "Press 1 for yes, 2 for no." << endl;
 	cin >> responseMore;
 
 	while (responseMore == 1) {
@@ -184,17 +187,18 @@ int main() {
 		cin.ignore(); // clears the buffer
 
 		getline(cin, answer2);
-		
+
 		if (answer2 != questions[assignedQuestion].getAnswer()) {
-			cout << "Incorrect! better luck tomorrow" << endl << endl;
+			cout << "Incorrect! better luck tomorrow" << questions[assignedQuestion].getAnswer() << endl << endl;
 		}
 		else {
 			cout << "Correct!" << endl << endl;
+			points += questions[assignedQuestion].getValue();
 		}
 
 		cout << "Do you want to answer my questions? Press 1 for yes, 2 for no." << endl;
-		cin >> responseMore;		
+		cin >> responseMore;
 	}
-	
+
 	return 0;
 }
