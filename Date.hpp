@@ -1,7 +1,3 @@
-
-#ifndef DATE_HPP
-#define DATE_HPP
-
 #include <iostream>
 #include <string>
 #include <ctime>
@@ -35,4 +31,3 @@ private:
 
 std::ostream& operator<<(std::ostream&, const Date&);
 
-#endif /* DATE_HPP */
